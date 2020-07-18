@@ -1,0 +1,56 @@
+version: 1.0
+name: BusinessTools
+author: Businessman381
+prefix: BusinessTools
+main: businessman381.businesstools.Main
+description: My Plugin
+
+commands:
+  gamemode:
+     description: Gamemode
+     permission: businesstools.gamemode
+     permission-message: You do not have permissions.
+     aliases: [gm]
+  heal:
+     description: Heal
+     permission: businesstools.heal
+     permission-message: You do not have permissions.
+  feed:
+     description: Feed
+     permission: businesstools.feed
+     permission-message: You do not have permissions.
+     aliases: [hunger, food]
+  fly:
+     description: Fly
+     permission: businesstools.fly
+     permission-message: You do not have permissions.
+  god:
+     description: God Mode
+     permission: businesstools.god
+     permission-message: You do not have permissions.
+  godfood:
+     description: GodFood Mode
+     permission: businesstools.godfood
+     permission-message: You do not have permissions.
+  godfake:
+     description: GodFake Mode
+     permission: businesstools.godfake
+     permission-message: You do not have permissions.
+  pvp:
+     description: PvP mode switch
+     permission: businesstools.pvpmode
+     permission-message: You do not have permissions.
+  infblocks:
+     description: Infinite Blocks
+     permission: businesstools.infblocks
+     permission-message: You do not have permissions.
+  fullbright:
+     description: FullBright resourcepack
+  freeze:
+     description: Freeze some players :P
+     permission: businesstools.freeze
+     permission-message: You do not have permissions.
+  restore:
+     description: Restore health and hunger
+     permission: businesstools.freeze
+     permission-message: You do not have permissions.

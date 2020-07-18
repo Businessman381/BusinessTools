@@ -1,0 +1,29 @@
+config-version: 1.0
+
+# pinglistener:
+enable-pinglistener: true
+
+# if pinglistener is enabled:
+# ' ' is required for motd and icon name!
+# place "icon.png" in your server root folder
+max-players: 10
+motd: 'A Minecraft Server'
+enable-icon: true
+icon-file-name: 'icon.png'
+
+
+
+# commands:
+# "true" to enable command, "false" to disable
+enable-cmd-gamemode: true
+enable-cmd-feed: true
+enable-cmd-heal: true
+enable-cmd-fly: true
+enable-cmd-god: true
+enable-cmd-godfood: true
+enable-cmd-godfake: true
+enable-cmd-pvp: true
+enable-cmd-infblocks: true
+enable-cmd-fullbright: true
+enable-cmd-freeze: true
+enable-cmd-restore: true

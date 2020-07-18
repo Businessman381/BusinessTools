@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="C:/Users/Biznesman381/Desktop/servers/.minecraft/server 1.15.2/spigot.jar">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/Biznesman381/Downloads/bukkit-1.15.2-R0.1-20200624.001047-124-javadoc.jar!/"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
