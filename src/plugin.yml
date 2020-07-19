@@ -1,9 +1,9 @@
-version: 1.0
+version: 1.1
 name: BusinessTools
 author: Businessman381
 prefix: BusinessTools
 main: businessman381.businesstools.Main
-description: My Plugin
+description: BusinessTools Plugin
 
 commands:
   gamemode:
