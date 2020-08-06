@@ -9,6 +9,7 @@ import org.bukkit.event.entity.EntityPickupItemEvent;
 import org.bukkit.event.entity.ItemDespawnEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class AntiDespawn implements Listener {
 	
@@ -22,15 +23,13 @@ public class AntiDespawn implements Listener {
 			
 			Player p = event.getEntity();
 			
-			if (!customData.containsKey(p)) {
-				
-				customData.put(p, i);
-				for (ItemStack item : event.getDrops()) {
-					item.getItemMeta().setCustomModelData(i);
-				}
-				i++;
-				
+			customData.put(p, i);
+			for (ItemStack item : event.getDrops()) {
+				ItemMeta meta = item.getItemMeta();
+				meta.setCustomModelData(i);
+				item.setItemMeta(meta);
 			}
+			i++;
 			
 		}
 		
@@ -43,9 +42,12 @@ public class AntiDespawn implements Listener {
 		
 		if (item.hasItemMeta()) {
 			
+			System.out.println("HELLO");
+			
 			if (item.getItemMeta().hasCustomModelData()) {
 				
 				int customDataValue = item.getItemMeta().getCustomModelData();
+				System.out.println("" + customDataValue);
 				
 				if (customData.containsValue(customDataValue)) {
 					
