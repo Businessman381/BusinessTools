@@ -1,7 +1,11 @@
 config-version: 1.2
 
-# pinglistener:
+# listeners:
 enable-pinglistener: true
+# antidespawn makes:
+# if player dies dropped items will not be able to despawn
+# this feature is EXPERIMENTAL!
+enable-antidespawn: true
 
 # if pinglistener is enabled:
 # ' ' is required for motd and icon name!
@@ -27,3 +31,7 @@ enable-cmd-infblocks: true
 enable-cmd-fullbright: true
 enable-cmd-freeze: true
 enable-cmd-restore: true
+enable-cmd-cords: true
+enable-cmd-stats: true
+enable-cmd-message: true
+enable-cmd-enderchest: true
