@@ -1,4 +1,5 @@
-version: 1.1
+version: 1.2
+api-version: 1.15
 name: BusinessTools
 author: Businessman381
 prefix: BusinessTools
@@ -54,3 +55,17 @@ commands:
      description: Restore health and hunger
      permission: businesstools.freeze
      permission-message: You do not have permissions.
+  stats:
+     description: General statistics
+  message:
+     description: Direct messages
+     aliases: [m]
+  enderchest:
+     description: Player's enderchest
+     permission: businesstools.enderchest
+     permission-message: You do not have permissions.
+  cords:
+     description: Player's coordinates
+     permission: businesstools.cords
+     permission-message: You do not have permissions.
+     aliases: [where, whereis]

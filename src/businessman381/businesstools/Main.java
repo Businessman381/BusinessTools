@@ -7,6 +7,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import businessman381.businesstools.commands.Cords;
+import businessman381.businesstools.commands.Enderchest;
 import businessman381.businesstools.commands.Feed;
 import businessman381.businesstools.commands.Fly;
 import businessman381.businesstools.commands.Freeze;
@@ -17,8 +19,11 @@ import businessman381.businesstools.commands.GodFake;
 import businessman381.businesstools.commands.GodFood;
 import businessman381.businesstools.commands.Heal;
 import businessman381.businesstools.commands.InfBlocks;
+import businessman381.businesstools.commands.Message;
 import businessman381.businesstools.commands.PvP;
 import businessman381.businesstools.commands.Restore;
+import businessman381.businesstools.commands.Stats;
+import businessman381.businesstools.listeners.AntiDespawn;
 import businessman381.businesstools.listeners.PingListener;
 
 public class Main extends JavaPlugin {
@@ -31,7 +36,7 @@ public class Main extends JavaPlugin {
 		
 		if (this.getConfig().getBoolean("enable-cmd-gamemode")) {
 			getCommand("gamemode").setExecutor(new Gamemode());
-			getCommand("gamemode").setTabCompleter(new Gamemode());;
+			getCommand("gamemode").setTabCompleter(new Gamemode());
 		}
 		
 		if (this.getConfig().getBoolean("enable-cmd-feed")) {
@@ -97,6 +102,31 @@ public class Main extends JavaPlugin {
 		
 		if (this.getConfig().getBoolean("enable-pinglistener")) {
 			Bukkit.getPluginManager().registerEvents(new PingListener(), this);
+		}
+		
+		if (this.getConfig().getBoolean("enable-cmd-stats")) {
+			getCommand("stats").setExecutor(new Stats());
+			getCommand("stats").setTabCompleter(new Stats());
+		}
+		
+		if (this.getConfig().getBoolean("enable-cmd-message")) {
+			getCommand("message").setExecutor(new Message());
+			getCommand("message").setTabCompleter(new Message());
+		}
+		
+		if (this.getConfig().getBoolean("enable-cmd-enderchest")) {
+			getCommand("enderchest").setExecutor(new Enderchest());
+			getCommand("enderchest").setTabCompleter(new Enderchest());
+		}
+		
+		if (this.getConfig().getBoolean("enable-cmd-cords")) {
+			getCommand("cords").setExecutor(new Cords());
+			getCommand("cords").setTabCompleter(new Cords());
+		}
+		
+		if (this.getConfig().getBoolean("enable-antidespawn")) {
+			AntiDespawn.customData = new HashMap<>();
+			Bukkit.getPluginManager().registerEvents(new AntiDespawn(), this);
 		}
 		
 		System.out.println("BusinessTools have been successfully loaded.");
