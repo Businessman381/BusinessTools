@@ -42,12 +42,9 @@ public class AntiDespawn implements Listener {
 		
 		if (item.hasItemMeta()) {
 			
-			System.out.println("HELLO");
-			
 			if (item.getItemMeta().hasCustomModelData()) {
 				
 				int customDataValue = item.getItemMeta().getCustomModelData();
-				System.out.println("" + customDataValue);
 				
 				if (customData.containsValue(customDataValue)) {
 					
