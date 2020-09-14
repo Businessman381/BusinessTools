@@ -10,8 +10,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+
+import businessman381.businesstools.Main;
 
 public class Gamemode implements CommandExecutor, TabCompleter {
+	
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -39,29 +44,120 @@ public class Gamemode implements CommandExecutor, TabCompleter {
 				
 			} else if (args.length == 2) {
 				
-				if (Bukkit.getPlayer(args[1]) != null) {
-					
-					Player target = Bukkit.getPlayer(args[1]);
+				if (args[1].equalsIgnoreCase("@a")) {
+				
 					Player player = (Player) sender;
 					if (args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("survival")) {
-						target.setGameMode(GameMode.SURVIVAL);
-						player.sendMessage(ChatColor.GREEN + target.getName() + "'s " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "survival.");
+						for (Player target : Bukkit.getOnlinePlayers()) {
+							if (target.getGameMode() == GameMode.SURVIVAL) continue;
+							else {
+								target.setGameMode(GameMode.SURVIVAL);
+								try {
+									if (plugin.getConfig().getList("notsilent-commands").contains("gamemode") ||
+											plugin.getConfig().getList("notsilent-commands").contains("gm") ||
+											plugin.getConfig().getList("notsilent-commands").contains("all"))
+												target.sendMessage(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " has changed your gamemode to " + ChatColor.YELLOW + "survival.");
+								} catch (NullPointerException ex) {}
+							}
+						}
+						player.sendMessage(ChatColor.GREEN + "All players' " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "survival.");
 					} else if (args[0].equalsIgnoreCase("1") || args[0].equalsIgnoreCase("creative")) {
-						target.setGameMode(GameMode.CREATIVE);
-						player.sendMessage(ChatColor.GREEN + target.getName() + "'s " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "creative.");
+						for (Player target : Bukkit.getOnlinePlayers()) {
+							if (target.getGameMode() == GameMode.CREATIVE) continue;
+							else {
+								target.setGameMode(GameMode.CREATIVE);
+								try {
+									if (plugin.getConfig().getList("notsilent-commands").contains("gamemode") ||
+											plugin.getConfig().getList("notsilent-commands").contains("gm") ||
+											plugin.getConfig().getList("notsilent-commands").contains("all"))
+												target.sendMessage(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " has changed your gamemode to " + ChatColor.YELLOW + "creative.");
+								} catch (NullPointerException ex) {}
+							}
+						}
+						player.sendMessage(ChatColor.GREEN + "All players' " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "creative.");
 					} else if (args[0].equalsIgnoreCase("2") || args[0].equalsIgnoreCase("adventure")) {
-						target.setGameMode(GameMode.ADVENTURE);
-						player.sendMessage(ChatColor.GREEN + target.getName() + "'s " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "adventure.");
+						for (Player target : Bukkit.getOnlinePlayers()) {
+							if (target.getGameMode() == GameMode.ADVENTURE) continue;
+							else {
+								target.setGameMode(GameMode.ADVENTURE);
+								try {
+									if (plugin.getConfig().getList("notsilent-commands").contains("gamemode") ||
+											plugin.getConfig().getList("notsilent-commands").contains("gm") ||
+											plugin.getConfig().getList("notsilent-commands").contains("all"))
+												target.sendMessage(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " has changed your gamemode to " + ChatColor.YELLOW + "adventure.");
+								} catch (NullPointerException ex) {}
+							}
+						}
+						player.sendMessage(ChatColor.GREEN + "All players' " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "adventure.");
 					} else if (args[0].equalsIgnoreCase("3") || args[0].equalsIgnoreCase("spectator")) {
-						target.setGameMode(GameMode.SPECTATOR);
-						player.sendMessage(ChatColor.GREEN + target.getName() + "'s " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "spectator.");
+						for (Player target : Bukkit.getOnlinePlayers()) {
+							if (target.getGameMode() == GameMode.SPECTATOR) continue;
+							else {
+								target.setGameMode(GameMode.SPECTATOR);
+								try {
+									if (plugin.getConfig().getList("notsilent-commands").contains("gamemode") ||
+											plugin.getConfig().getList("notsilent-commands").contains("gm") ||
+											plugin.getConfig().getList("notsilent-commands").contains("all"))
+												target.sendMessage(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " has changed your gamemode to " + ChatColor.YELLOW + "spectator.");
+								} catch (NullPointerException ex) {}
+							}
+						}
+						player.sendMessage(ChatColor.GREEN + "All players' " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "spectator.");
 					} else {
 						sendInvalid(sender);
 					}
 					
 				} else {
 					
-					sendInvalidPlayer(sender);
+					if (Bukkit.getPlayer(args[1]) != null) {
+					
+					Player target = Bukkit.getPlayer(args[1]);
+					Player player = (Player) sender;
+					if (args[0].equalsIgnoreCase("0") || args[0].equalsIgnoreCase("survival")) {
+						target.setGameMode(GameMode.SURVIVAL);
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("gamemode") ||
+									plugin.getConfig().getList("notsilent-commands").contains("gm") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " has changed your gamemode to " + ChatColor.YELLOW + "survival.");
+						} catch (NullPointerException ex) {}
+						player.sendMessage(ChatColor.GREEN + target.getName() + "'s " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "survival.");
+					} else if (args[0].equalsIgnoreCase("1") || args[0].equalsIgnoreCase("creative")) {
+						target.setGameMode(GameMode.CREATIVE);
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("gamemode") ||
+									plugin.getConfig().getList("notsilent-commands").contains("gm") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " has changed your gamemode to " + ChatColor.YELLOW + "creative.");
+						} catch (NullPointerException ex) {}
+						player.sendMessage(ChatColor.GREEN + target.getName() + "'s " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "creative.");
+					} else if (args[0].equalsIgnoreCase("2") || args[0].equalsIgnoreCase("adventure")) {
+						target.setGameMode(GameMode.ADVENTURE);
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("gamemode") ||
+									plugin.getConfig().getList("notsilent-commands").contains("gm") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " has changed your gamemode to " + ChatColor.YELLOW + "adventure.");
+						} catch (NullPointerException ex) {}
+						player.sendMessage(ChatColor.GREEN + target.getName() + "'s " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "adventure.");
+					} else if (args[0].equalsIgnoreCase("3") || args[0].equalsIgnoreCase("spectator")) {
+						target.setGameMode(GameMode.SPECTATOR);
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("gamemode") ||
+									plugin.getConfig().getList("notsilent-commands").contains("gm") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + player.getName() + ChatColor.GRAY + " has changed your gamemode to " + ChatColor.YELLOW + "spectator.");
+						} catch (NullPointerException ex) {}
+						player.sendMessage(ChatColor.GREEN + target.getName() + "'s " + ChatColor.GRAY + "gamemode has been changed to " + ChatColor.YELLOW + "spectator.");
+					} else {
+						sendInvalid(sender);
+					}
+					
+					} else {
+					
+						sendInvalidPlayer(sender);
+					
+					}
 					
 				}
 				

@@ -15,41 +15,33 @@ public class PvP implements CommandExecutor, TabCompleter {
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
-		if (sender instanceof Player) {
+		if (args.length == 1) {
 			
-			Player p = (Player) sender;
-			
-			if (args.length == 1) {
+			if (args[0].equalsIgnoreCase("on")) {
 				
-				if (args[0].equalsIgnoreCase("on")) {
-					
-					for (World world : Bukkit.getWorlds()) world.setPVP(true);
-					p.sendMessage(ChatColor.GRAY + "You have turned " + ChatColor.YELLOW + args[0] + ChatColor.GRAY + " the PvP mode.");
-					for (Player target : Bukkit.getOnlinePlayers()) {
-						if (target == p) continue;
-						target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " has turned " + ChatColor.YELLOW + args[0] + " the PvP mode.");
-					}
-					
-				} else if (args[0].equalsIgnoreCase("off")) {
-					
-					for (World world : Bukkit.getWorlds()) world.setPVP(false);
-					p.sendMessage(ChatColor.GRAY + "You have turned " + ChatColor.YELLOW + args[0] + ChatColor.GRAY + " the PvP mode.");
-					for (Player target : Bukkit.getOnlinePlayers()) {
-						if (target == p) continue;
-						target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " has turned " + ChatColor.YELLOW + args[0] + " the PvP mode.");
-					}
-					
-				} else {
-					
-					sendInvalid(sender);
+				for (World world : Bukkit.getWorlds()) world.setPVP(true);
+				sender.sendMessage(ChatColor.GRAY + "You have turned " + ChatColor.YELLOW + args[0] + ChatColor.GRAY + " the PvP mode.");
+				for (Player target : Bukkit.getOnlinePlayers())
+					if (target == (Player) sender) continue;
+				Bukkit.broadcastMessage(ChatColor.GREEN + sender.getName() + ChatColor.GRAY + " has turned " + ChatColor.YELLOW + args[0] + " the PvP mode.");
 				
-				}
+			} else if (args[0].equalsIgnoreCase("off")) {
+				
+				for (World world : Bukkit.getWorlds()) world.setPVP(false);
+				sender.sendMessage(ChatColor.GRAY + "You have turned " + ChatColor.YELLOW + args[0] + ChatColor.GRAY + " the PvP mode.");
+				for (Player target : Bukkit.getOnlinePlayers())
+					if (target == (Player) sender) continue;
+				Bukkit.broadcastMessage(ChatColor.GREEN + sender.getName() + ChatColor.GRAY + " has turned " + ChatColor.YELLOW + args[0] + " the PvP mode.");
 				
 			} else {
 				
 				sendInvalid(sender);
-				
+			
 			}
+			
+		} else {
+			
+			sendInvalid(sender);
 			
 		}
 		

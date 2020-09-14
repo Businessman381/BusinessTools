@@ -15,46 +15,54 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.plugin.Plugin;
+
+import businessman381.businesstools.Main;
 
 public class Freeze implements CommandExecutor, Listener {
 	
 	public static Set<UUID> freezed;
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
-		if (sender instanceof Player) {
+		if (args.length == 1) {
 			
-			if (args.length == 1) {
+			Player target = Bukkit.getPlayer(args[0]);
+			
+			if (target != null) {
 				
-				Player p = (Player) sender;
-				
-				Player target = Bukkit.getPlayer(args[0]);
-				
-				if (target != null) {
+				if (freezed.contains(target.getUniqueId()) == false) {
 					
-					if (freezed.contains(target.getUniqueId()) == false) {
-						
-						freezed.add(target.getUniqueId());
-						p.sendMessage(ChatColor.GRAY + "You had" + ChatColor.YELLOW + " freeze " + ChatColor.GREEN + target.getName() + ".");
-						
-					} else if (freezed.contains(target.getUniqueId()) == true) {
-						
-						freezed.remove(target.getUniqueId());
-						p.sendMessage(ChatColor.GRAY + "You had" + ChatColor.YELLOW + " unfreeze " + ChatColor.GREEN + target.getName() + ".");
-						
-					}
+					freezed.add(target.getUniqueId());
+					sender.sendMessage(ChatColor.GRAY + "You had" + ChatColor.YELLOW + " freeze " + ChatColor.GREEN + target.getName() + ".");
+					try {
+						if (plugin.getConfig().getList("notsilent-commands").contains("freeze") ||
+								plugin.getConfig().getList("notsilent-commands").contains("all"))
+									target.sendMessage(ChatColor.GREEN + sender.getName() + ChatColor.GRAY + " freezed you.");
+					} catch (NullPointerException ex) {}
 					
-				} else {
+				} else if (freezed.contains(target.getUniqueId()) == true) {
 					
-					sendInvalidPlayer(sender);
+					freezed.remove(target.getUniqueId());
+					sender.sendMessage(ChatColor.GRAY + "You had" + ChatColor.YELLOW + " unfreeze " + ChatColor.GREEN + target.getName() + ".");
+					try {
+						if (plugin.getConfig().getList("notsilent-commands").contains("freeze") ||
+								plugin.getConfig().getList("notsilent-commands").contains("all"))
+									target.sendMessage(ChatColor.GREEN + sender.getName() + ChatColor.GRAY + " unfreezed you.");
+					} catch (NullPointerException ex) {}
 					
 				}
 				
 			} else {
 				
-				sendInvalid(sender);
+				sendInvalidPlayer(sender);
 				
 			}
+			
+		} else {
+			
+			sendInvalid(sender);
 			
 		}
 		

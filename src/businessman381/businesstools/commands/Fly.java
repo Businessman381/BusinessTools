@@ -5,9 +5,14 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+
+import businessman381.businesstools.Main;
 import net.md_5.bungee.api.ChatColor;
 
 public class Fly implements CommandExecutor {
+	
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
@@ -38,12 +43,23 @@ public class Fly implements CommandExecutor {
 					
 					target.setAllowFlight(true);
 					p.sendMessage(ChatColor.GRAY + "You turned on the " + ChatColor.YELLOW + "flight.");
+					if (plugin.getConfig().getList("notsilent-commands").contains("fly") ||
+					plugin.getConfig().getList("notsilent-commands").contains("all"))
+						target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " enabled your flight.");
 					
 				} else if (target.getAllowFlight() == true) {
 					
 					target.setAllowFlight(false);
 					p.sendMessage(ChatColor.GRAY + "You turned off the " + ChatColor.YELLOW + "flight.");
-					
+					try {
+						if (plugin.getConfig().getList("notsilent-commands").contains("fly") ||
+								plugin.getConfig().getList("notsilent-commands").contains("all"))
+									target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " disabled your flight.");
+					} catch (NullPointerException ex) {}
+					if (plugin.getConfig().getList("notsilent-commands").contains("fly") ||
+					plugin.getConfig().getList("notsilent-commands").contains("all"))
+						target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " disabled your flight.");
+				
 				}
 				
 			} else {

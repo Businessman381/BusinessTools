@@ -1,7 +1,7 @@
-config-version: 1.2
+config-version: 1.3
 
 # listeners:
-enable-pinglistener: true
+enable-pinglistener: false
 # antidespawn makes:
 # if player dies dropped items will not be able to despawn
 # this feature is EXPERIMENTAL!
@@ -10,6 +10,7 @@ enable-antidespawn: true
 # if pinglistener is enabled:
 # ' ' is required for motd and icon name!
 # place "icon.png" in your server root folder
+# UPDATE: honestly i think "motd" is useless in my plugin
 max-players: 10
 motd: 'A Minecraft Server'
 enable-icon: true
@@ -18,20 +19,20 @@ icon-file-name: 'icon.png'
 
 
 # commands:
-# "true" to enable command, "false" to disable
-enable-cmd-gamemode: true
-enable-cmd-feed: true
-enable-cmd-heal: true
-enable-cmd-fly: true
-enable-cmd-god: true
-enable-cmd-godfood: true
-enable-cmd-godfake: true
-enable-cmd-pvp: true
-enable-cmd-infblocks: true
-enable-cmd-fullbright: true
-enable-cmd-freeze: true
-enable-cmd-restore: true
-enable-cmd-cords: true
-enable-cmd-stats: true
-enable-cmd-message: true
-enable-cmd-enderchest: true
+
+# silentcmd example:
+# you: /gm 1 [target name]
+# if command is not silent: server to target: "Your gamemode has been changed blah blah blah"
+# if silent: nothing
+# "- all" to execute all commands not silently
+# commands aliases is acceptable
+notsilent-commands:
+# - god
+# - food
+
+# type commands what do you want to disable
+# "- all" to disable all commands
+# commands aliases is acceptable
+disabled-commands:
+# - god
+# - food

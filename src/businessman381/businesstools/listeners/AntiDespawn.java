@@ -65,6 +65,7 @@ public class AntiDespawn implements Listener {
 			
 			Player p = (Player) event.getEntity();
 			ItemStack item = event.getItem().getItemStack();
+			ItemMeta meta = item.getItemMeta();
 			
 			if (event.getItem().getItemStack().hasItemMeta()) {
 				
@@ -77,7 +78,8 @@ public class AntiDespawn implements Listener {
 						if (customData.get(p) == customDataValue) {
 							
 							customData.remove(p);
-							item.getItemMeta().setCustomModelData(null);
+							meta.setCustomModelData(null);
+							item.setItemMeta(meta);
 							i--;
 							
 						}

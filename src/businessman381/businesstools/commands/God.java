@@ -12,12 +12,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.plugin.Plugin;
 
+import businessman381.businesstools.Main;
 import net.md_5.bungee.api.ChatColor;
 
 public class God implements CommandExecutor, Listener {
 	
 	public static Set<UUID> god;
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
@@ -50,11 +53,21 @@ public class God implements CommandExecutor, Listener {
 						
 						god.add(target.getUniqueId());
 						p.sendMessage(ChatColor.GRAY + "You have " + ChatColor.YELLOW + "enabled" + ChatColor.GRAY + " God Mode for " + ChatColor.GREEN + target.getName() + ".");
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("god") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " enabled your God Mode.");
+						} catch (NullPointerException ex) {}
 						
 					} else if (god.contains(target.getUniqueId()) == true) {
 						
 						god.remove(target.getUniqueId());
 						p.sendMessage(ChatColor.GRAY + "You have " + ChatColor.YELLOW + "disabled" + ChatColor.GRAY + " God Mode for " + ChatColor.GREEN + target.getName() + ".");
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("god") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " disabled your God Mode.");
+						} catch (NullPointerException ex) {}
 						
 					}
 					

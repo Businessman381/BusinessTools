@@ -11,12 +11,15 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.plugin.Plugin;
 
+import businessman381.businesstools.Main;
 import net.md_5.bungee.api.ChatColor;
 
 public class GodFood implements CommandExecutor, Listener {
 	
 	public static Set<UUID> godFood;
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
@@ -51,11 +54,21 @@ public class GodFood implements CommandExecutor, Listener {
 						godFood.add(target.getUniqueId());
 						target.setFoodLevel(20);
 						p.sendMessage(ChatColor.GRAY + "You have " + ChatColor.YELLOW + "enabled" + ChatColor.GRAY + " GodFood Mode for " + ChatColor.GREEN + target.getName() + ".");
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("godfood") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " enabled your GodFood Mode.");
+						} catch (NullPointerException ex) {}
 						
 					} else if (godFood.contains(target.getUniqueId()) == true) {
 						
 						godFood.remove(target.getUniqueId());
 						p.sendMessage(ChatColor.GRAY + "You have " + ChatColor.YELLOW + "disabled" + ChatColor.GRAY + " GodFood Mode for " + ChatColor.GREEN + target.getName() + ".");
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("godfood") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " disabled your GodFood Mode.");
+						} catch (NullPointerException ex) {}
 						
 					}
 					

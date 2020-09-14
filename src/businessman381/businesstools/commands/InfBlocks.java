@@ -35,7 +35,7 @@ public class InfBlocks implements CommandExecutor, TabCompleter, Listener {
 				
 				if (block != null) {
 					
-					if (block.isBlock() == true) {
+					if (block.isBlock() && block.isSolid()) {
 						
 						ItemStack stack = new ItemStack(block, block.getMaxStackSize());
 						
@@ -95,7 +95,7 @@ public class InfBlocks implements CommandExecutor, TabCompleter, Listener {
 			ItemStack stack = new ItemStack(block, block.getMaxStackSize());
 			int slot = event.getPlayer().getInventory().getHeldItemSlot();
 			
-			if (block.isBlock() == true) {
+			if (block.isBlock()) {
 				
 				if (InfBlocks.blocks.get(event.getPlayer()) == block) {
 					
@@ -116,7 +116,7 @@ public class InfBlocks implements CommandExecutor, TabCompleter, Listener {
 			
 			Material block = event.getItemDrop().getItemStack().getType();
 			
-			if (block.isBlock() == true) {
+			if (block.isBlock()) {
 				
 				if (InfBlocks.blocks.get(event.getPlayer()) == block) {
 					
@@ -137,7 +137,7 @@ public class InfBlocks implements CommandExecutor, TabCompleter, Listener {
 			
 			Material block = event.getBlock().getType();
 			
-			if (block.isBlock() == true) {
+			if (block.isBlock()) {
 				
 				if (InfBlocks.blocks.get(event.getPlayer()) == block) {
 					
@@ -164,7 +164,10 @@ public class InfBlocks implements CommandExecutor, TabCompleter, Listener {
 		ArrayList<String> l = new ArrayList<String>();
 		if (args.length == 1) {
 			l.clear();
-			l.add("[blockname]");
+			for (Material material : Material.values()) {
+				if (material.isBlock() && material.isSolid()) l.add(material.toString().toLowerCase());
+				else continue;
+			}
 		}
 		return l;
 	}

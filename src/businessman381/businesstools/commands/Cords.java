@@ -10,10 +10,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+
+import businessman381.businesstools.Main;
 
 public class Cords implements CommandExecutor, TabCompleter {
 	
 	private String targetDIM;
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -34,8 +38,15 @@ public class Cords implements CommandExecutor, TabCompleter {
 					targetDIM = "The End";
 				
 				sender.sendMessage(ChatColor.GREEN + target.getName() + ":");
-				sender.sendMessage(ChatColor.GRAY + "Coordinates: " + ChatColor.YELLOW + targetX + ", " + targetY + ", " + targetZ + ".");///////
+				sender.sendMessage(ChatColor.GRAY + "Coordinates: " + ChatColor.YELLOW + targetX + ", " + targetY + ", " + targetZ + ".");
 				sender.sendMessage(ChatColor.GRAY + "Dimension: " + ChatColor.YELLOW + targetDIM + ".");
+				try {
+					if (plugin.getConfig().getList("notsilent-commands").contains("cords") ||
+					plugin.getConfig().getList("notsilent-commands").contains("where") ||
+					plugin.getConfig().getList("notsilent-commands").contains("whereis") ||
+					plugin.getConfig().getList("notsilent-commands").contains("all"))
+						target.sendMessage(ChatColor.GREEN + sender.getName() + ChatColor.GRAY + " checked your coordinates.");
+				} catch (NullPointerException ex) {}
 				
 			} else {
 				

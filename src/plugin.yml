@@ -1,4 +1,4 @@
-version: 1.2
+version: 1.3
 api-version: 1.15
 name: BusinessTools
 author: Businessman381
@@ -10,62 +10,77 @@ commands:
   gamemode:
      description: Gamemode
      permission: businesstools.gamemode
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
      aliases: [gm]
   heal:
      description: Heal
      permission: businesstools.heal
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   feed:
      description: Feed
      permission: businesstools.feed
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
      aliases: [hunger, food]
   fly:
      description: Fly
      permission: businesstools.fly
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   god:
      description: God Mode
      permission: businesstools.god
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   godfood:
      description: GodFood Mode
      permission: businesstools.godfood
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   godfake:
      description: GodFake Mode
      permission: businesstools.godfake
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   pvp:
      description: PvP mode switch
      permission: businesstools.pvpmode
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   infblocks:
      description: Infinite Blocks
      permission: businesstools.infblocks
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   fullbright:
      description: FullBright resourcepack
+     permission: businesstools.fullbright
+     permission-message: You do not have permissions to perform this command.
   freeze:
      description: Freeze some players :P
      permission: businesstools.freeze
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   restore:
      description: Restore health and hunger
-     permission: businesstools.freeze
-     permission-message: You do not have permissions.
+     permission: businesstools.restore
+     permission-message: You do not have permissions to perform this command.
   stats:
      description: General statistics
+     permission: businesstools.stats
+     permission-message: You do not have permissions to perform this command.
   message:
      description: Direct messages
+     permission: businesstools.message
+     permission-message: You do not have permissions to perform this command.
      aliases: [m]
   enderchest:
      description: Player's enderchest
      permission: businesstools.enderchest
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
   cords:
      description: Player's coordinates
      permission: businesstools.cords
-     permission-message: You do not have permissions.
+     permission-message: You do not have permissions to perform this command.
      aliases: [where, whereis]
+  tpall:
+     description: Teleporting all players
+     permission: businesstools.tpall
+     permission-message: You do not have permissions to perform this command.
+  s:
+     description: Teleporting player to you
+     permission: businesstools.s
+     permission-message: You do not have permissions to perform this command.
+  

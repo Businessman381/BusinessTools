@@ -9,8 +9,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+
+import businessman381.businesstools.Main;
 
 public class Restore implements CommandExecutor, TabCompleter {
+	
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
@@ -42,6 +47,11 @@ public class Restore implements CommandExecutor, TabCompleter {
 					target.setFoodLevel(20);
 					target.setHealth(20);
 					p.sendMessage(ChatColor.GREEN + target.getName() + "'s" + ChatColor.GRAY + " health and hunger has been restrored.");
+					try {
+						if (plugin.getConfig().getList("notsilent-commands").contains("restore") ||
+								plugin.getConfig().getList("notsilent-commands").contains("all"))
+									target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " restored you.");
+					} catch (NullPointerException ex) {}
 					
 				} else {
 					
@@ -79,7 +89,6 @@ public class Restore implements CommandExecutor, TabCompleter {
 		ArrayList<String> l = new ArrayList<String>();
 		if (args.length == 1) {
 			l.clear();
-			l.add("@a");
 			for (Player p : Bukkit.getOnlinePlayers()) {
 				l.add(p.getName());
 			}

@@ -10,8 +10,13 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+
+import businessman381.businesstools.Main;
 
 public class Stats implements CommandExecutor, TabCompleter {
+	
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
@@ -86,6 +91,11 @@ public class Stats implements CommandExecutor, TabCompleter {
 		p.sendMessage(ChatColor.GRAY + "Damage dealt: " + ChatColor.YELLOW + (target.getStatistic(Statistic.DAMAGE_DEALT) / 20) + " hearts.");
 		p.sendMessage(ChatColor.GRAY + "Player kills: " + ChatColor.YELLOW + target.getStatistic(Statistic.PLAYER_KILLS) + " kills.");
 		p.sendMessage(ChatColor.GRAY + "Jumps: " + ChatColor.YELLOW + target.getStatistic(Statistic.JUMP) + " times.");
+		try {
+			if (plugin.getConfig().getList("notsilent-commands").contains("stats") ||
+					plugin.getConfig().getList("notsilent-commands").contains("all"))
+						target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " checked your stats.");
+		} catch (NullPointerException ex) {}
 		
 	}
 	

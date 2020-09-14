@@ -13,12 +13,15 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.FoodLevelChangeEvent;
+import org.bukkit.plugin.Plugin;
 
+import businessman381.businesstools.Main;
 import net.md_5.bungee.api.ChatColor;
 
 public class GodFake implements CommandExecutor, Listener {
 	
 	public static Set<UUID> godFake;
+	Plugin plugin = Main.getPlugin(Main.class);
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		
@@ -53,12 +56,21 @@ public class GodFake implements CommandExecutor, Listener {
 						godFake.add(target.getUniqueId());
 						target.setFoodLevel(19);
 						p.sendMessage(ChatColor.GRAY + "You have " + ChatColor.YELLOW + "enabled" + ChatColor.GRAY + " GodFake Mode for " + ChatColor.GREEN + target.getName() + ".");
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("godfake") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " enabled your GodFake Mode.");
+						} catch (NullPointerException ex) {}
 						
 					} else if (godFake.contains(target.getUniqueId()) == true) {
 						
 						godFake.remove(target.getUniqueId());
 						p.sendMessage(ChatColor.GRAY + "You have " + ChatColor.YELLOW + "disabled" + ChatColor.GRAY + " GodFake Mode for " + ChatColor.GREEN + target.getName() + ".");
-						
+						try {
+							if (plugin.getConfig().getList("notsilent-commands").contains("godfake") ||
+									plugin.getConfig().getList("notsilent-commands").contains("all"))
+										target.sendMessage(ChatColor.GREEN + p.getName() + ChatColor.GRAY + " disabled your GodFake Mode.");
+						} catch (NullPointerException ex) {}
 					}
 					
 				} else {
